@@ -7,6 +7,6 @@ const traitSchema = new mongoose.Schema({
   },
 });
 
-const Trait = mongoose.model('Trait', traitSchema);
-
-module.exports = Trait;
+module.exports = {
+  traitSchema,
+};

@@ -11,6 +11,6 @@ const headSchema = new mongoose.Schema({
   },
 });
 
-const Head = mongoose.model('Head', headSchema);
-
-module.exports = Head;
+module.exports = {
+  headSchema,
+};

@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
+const traitSchema = require('./traitModel');
 
 const houseSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, 'A house must have a name'],
+    unique: true,
   },
   houseColours: {
     type: String,
@@ -25,20 +27,21 @@ const houseSchema = new mongoose.Schema({
   },
   heads: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Head',
+      type: {
+        firstName: {
+          type: String,
+          required: true,
+        },
+        lastName: {
+          type: String,
+          required: true,
+        },
+      },
     },
   ],
-  traits: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Trait',
-    },
-  ],
+  traits: [{ type: traitSchema.traitSchema }],
 });
 
 const House = mongoose.model('House', houseSchema);
 
 module.exports = House;
-
-// is parent referencing better?
